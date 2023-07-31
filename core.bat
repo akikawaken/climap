@@ -108,7 +108,7 @@ if %move% == up goto up
 if %move% == down goto down
 if %move% == left goto left
 if %move% == right goto right
-
+goto unknown
 :up
 set place1=%place:~0,1%
 set place2=%place:~1,1%
@@ -162,5 +162,9 @@ goto map
 :ERROR
 cls
  echo cant move!
+ goto map2
+
+ :unknown
+ cls
  goto map2
 pause
