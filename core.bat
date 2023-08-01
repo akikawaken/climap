@@ -104,6 +104,7 @@ echo  9 ^| %a9% ^| %b9% ^| %c9% ^| %d9% ^| %e9% ^| %f9% ^| %g9% ^| %h9% ^| %i9% 
 echo   ---------------------------------------
 echo where to move?
 set /p move=(up/down/left/right):
+:tp
 if %move% == up goto up
 if %move% == down goto down
 if %move% == left goto left
