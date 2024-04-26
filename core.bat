@@ -89,7 +89,10 @@ set %place1%%place2%=%ESC%[5mÅú%ESC%[0m
 cls
 :map2
 set place=%place1%%place2%
-echo %place1%%place2%
+if %ERRORLEVEL% == 1 echo User Input:w , ERRORLEVEL:%ERRORLEVEL% , Place:%place% , Place1:%place1% , Place2: %place2%
+if %ERRORLEVEL% == 2 echo User Input:a , ERRORLEVEL:%ERRORLEVEL% , Place:%place% , Place1:%place1% , Place2: %place2%
+if %ERRORLEVEL% == 3 echo User Input:s , ERRORLEVEL:%ERRORLEVEL% , Place:%place% , Place1:%place1% , Place2: %place2%
+if %ERRORLEVEL% == 4 echo User Input:d , ERRORLEVEL:%ERRORLEVEL% , Place:%place% , Place1:%place1% , Place2: %place2%
 echo      a   b   c   d   e   f   g   h   i
 echo   --------------------------------------
 echo  1 ^| %a1% ^| %b1% ^| %c1% ^| %d1% ^| %e1% ^| %f1% ^| %g1% ^| %h1% ^| %i1% ^|
@@ -102,13 +105,12 @@ echo  7 ^| %a7% ^| %b7% ^| %c7% ^| %d7% ^| %e7% ^| %f7% ^| %g7% ^| %h7% ^| %i7% 
 echo  8 ^| %a8% ^| %b8% ^| %c8% ^| %d8% ^| %e8% ^| %f8% ^| %g8% ^| %h8% ^| %i8% ^|
 echo  9 ^| %a9% ^| %b9% ^| %c9% ^| %d9% ^| %e9% ^| %f9% ^| %g9% ^| %h9% ^| %i9% ^|
 echo   ---------------------------------------
-echo where to move?
-set /p move=(up/down/left/right):
+choice /c wasd
 :tp
-if %move% == up goto up
-if %move% == down goto down
-if %move% == left goto left
-if %move% == right goto right
+if %ERRORLEVEL% == 1 goto up
+if %ERRORLEVEL% == 2 goto left
+if %ERRORLEVEL% == 3 goto down
+if %ERRORLEVEL% == 4 goto right
 goto unknown
 :up
 set place1=%place:~0,1%
@@ -168,4 +170,3 @@ cls
  :unknown
  cls
  goto map2
-pause
